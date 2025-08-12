@@ -65,7 +65,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       'cdn.pixabay.com',
-      'server-dominate.onrender.com', // bỏ https://, chỉ domain thôi
+      'server-dominate.onrender.com', 
       'static.vecteezy.com',
     ],
   },
@@ -73,7 +73,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/:path*`,
+        destination: `https://server-dominate.onrender.com/api/:path*`,
       },
     ]
   },
