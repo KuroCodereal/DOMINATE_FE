@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   devIndicators: false,
   images: {
-    domains: ['cdn.pixabay.com', 'localhost', 'static.vecteezy.com'],
+    domains: ['cdn.pixabay.com', 'https://server-dominate.onrender.com', 'static.vecteezy.com'],
   },
   // async redirects() {
   //   return [
