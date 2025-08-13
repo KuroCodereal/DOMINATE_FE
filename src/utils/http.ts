@@ -14,6 +14,7 @@ export type CustomRequestInit = Omit<RequestInit, 'method'> & {
 }
 
 const prettyUrl = (url?: string, prefix = false) => (url?.endsWith('/') ? url.slice(0, prefix ? 1 : -1) : (url ?? ''))
+
 const log = console.log
 const http = {
   async request<T>(
