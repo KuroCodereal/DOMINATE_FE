@@ -72,11 +72,11 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/:path*`,
+        source: 'api/:path*',
+        destination: 'https://server-dominate.onrender.com/api/v1/:path*',
       },
     ]
-  },
+  }
 }
 
 export default nextConfig
