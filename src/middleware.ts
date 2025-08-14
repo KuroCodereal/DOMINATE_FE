@@ -45,6 +45,11 @@ export function middleware(request: NextRequest) {
   }
 
   const isApi = pathname.startsWith('/api')
+  const isStaticFile =
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/images') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/static')
 
   const isPublic =
     pathname === '/' ||
@@ -55,7 +60,7 @@ export function middleware(request: NextRequest) {
   const isAuthOnlyPublicPage = AUTH_ONLY_PUBLIC_PATHS.some(path => pathname.startsWith(`/${path}`))
 
   // Allow all API routes
-  if (isApi) return NextResponse.next()
+  if (isApi || isStaticFile) return NextResponse.next()
 
   // 🔒 Block access to login/register/... pages if already logged in
   if (isAuthOnlyPublicPage && token) {

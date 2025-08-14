@@ -85,11 +85,11 @@ export default function SuccessPage() {
             return
           }
         }
-        if (!res?.data?.accountName) {
-          setCheckPayOS(false)
-          toast.warning('Error payment from PayOS')
-          return
-        }
+        // if (!res?.data?.accountName) {
+        //   setCheckPayOS(false)
+        //   toast.warning('Error payment from PayOS')
+        //   return
+        // }
       } catch (err) {
         console.error('Not found order:', err)
         setCheckOrderExist(false)
