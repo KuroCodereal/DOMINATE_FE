@@ -65,7 +65,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       'cdn.pixabay.com',
-      'server-dominate.onrender.com', 
+      'server-dominate.fly.dev', 
       'static.vecteezy.com',
     ],
   },
