@@ -73,7 +73,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://server-dominate.onrender.com/api/v1/:path*',
+        destination: 'https://server-dominate.fly.dev/api/v1/:path*',
       },
     ]
   }
