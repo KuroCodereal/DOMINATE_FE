@@ -5,19 +5,11 @@ import { LINKS } from '~/constants/links'
 import http from '~/utils/http'
 
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
-  const { searchParams } = new URL(request.url)
   const token = request.cookies.get(AUTH.token)?.value
-  const reason = searchParams.get('reason')
+
   const { id } = await params
 
-  if (!reason) {
-    return NextResponse.json({ error: 'Missing parameter(s)' }, { status: 400 })
-  }
-
-  const res = await http.post(`${LINKS.payment_cancel}/${id}`, {
-    params: {
-      reason,
-    },
+  const res = await http.post(`${LINKS.payment_cancel_pro}/${id}`, {
     headers: {
       Authorization: token ? `Bearer ${token}` : '',
     },

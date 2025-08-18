@@ -7,17 +7,15 @@ import http from '~/utils/http'
 export async function POST(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const token = request.cookies.get(AUTH.token)?.value
-  const email = searchParams.get('email')
   const orderId = searchParams.get('orderId')
   const content = searchParams.get('content')
   const packageId = searchParams.get('packageId')
 
-  if (!email || !orderId || !packageId || !content) {
+  if (!orderId || !packageId || !content) {
     return NextResponse.json({ error: 'Missing parameter(s)' }, { status: 400 })
   }
   const res = await http.post(LINKS.order_email_report, {
     params: {
-      email,
       orderId,
       packageId,
       content,

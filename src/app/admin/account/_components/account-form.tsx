@@ -5,6 +5,7 @@ import CustomModalForm from '../../_components/custom-modal-form'
 
 import { useEffect } from 'react'
 import { User } from '#/user'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -63,11 +64,7 @@ export default function AccountForm({ visible, onCancel, onFinish, modalType, fo
       {modalType !== 'change password' && (
         <>
           {modalType === 'add' ? (
-            <Form.Item
-              name='userName'
-              label='User name'
-              rules={[{ required: true, message: 'Please input username!' }]}
-            >
+            <Form.Item name='userName' label='User name' rules={getValidationRules('userName')}>
               <Input />
             </Form.Item>
           ) : (
@@ -75,30 +72,33 @@ export default function AccountForm({ visible, onCancel, onFinish, modalType, fo
               <Input value={editRecord?.userName} disabled />
             </Form.Item>
           )}
-          <Form.Item
-            name='firstName'
-            label='First Name'
-            rules={[{ required: true, message: 'Please input first name!' }]}
-          >
+          <Form.Item name='firstName' label='First Name' rules={getValidationRules('firstName')}>
             <Input />
           </Form.Item>
-          <Form.Item name='lastName' label='Last Name' rules={[{ required: true, message: 'Please input last name!' }]}>
+          <Form.Item name='lastName' label='Last Name' rules={getValidationRules('lastName')}>
             <Input />
           </Form.Item>
-          <Form.Item name='email' label='Email' rules={[{ required: true, message: 'Please input email!' }]}>
+          <Form.Item name='email' label='Email' rules={getValidationRules('email')}>
             <Input />
           </Form.Item>
-          <Form.Item
-            name='phoneNumber'
-            label='Phone Number'
-            rules={[{ required: true, message: 'Please input phone number!' }]}
-          >
+          <Form.Item name='phoneNumber' label='Phone Number' rules={getValidationRules('phoneNumber')}>
             <Input />
           </Form.Item>
           {modalType === 'add' && (
-            <Form.Item name='password' label='Password' rules={[{ required: true, message: 'Please input password!' }]}>
-              <Input type='password' />
-            </Form.Item>
+            <>
+              <Form.Item name='password' label='Password' rules={getValidationRules('password')}>
+                <Input type='password' />
+              </Form.Item>
+              <Form.Item
+                name='password_confirmation'
+                label='Password Confirm'
+                dependencies={['password']}
+                hasFeedback
+                rules={getValidationRules('password_confirmation')}
+              >
+                <Input type='password' />
+              </Form.Item>
+            </>
           )}
           {modalType === 'edit' && (
             <>
@@ -113,11 +113,7 @@ export default function AccountForm({ visible, onCancel, onFinish, modalType, fo
         </>
       )}
       {modalType === 'change password' && (
-        <Form.Item
-          name='newPassword'
-          label='New Password'
-          rules={[{ required: true, message: 'Please input new password!' }]}
-        >
+        <Form.Item name='newPassword' label='New Password' rules={getValidationRules('newPassword')}>
           <Input type='password' />
         </Form.Item>
       )}

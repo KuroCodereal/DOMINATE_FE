@@ -29,7 +29,7 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
     setReady(true)
 
     const docIdParam = searchParams.get('docId')
-    if (docIdParam) {
+    if (docIdParam && selectedVersionId === null) {
       const docId = Number(docIdParam)
       const foundVersion = listDoc.find(version =>
         version.categories.some(cat => cat.docs.some(doc => doc.docId === docId))
@@ -43,20 +43,19 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
           setSelectedDoc(foundDoc)
 
           const foundCategory = foundVersion.categories.find(cat => cat.docs.some(doc => doc.docId === foundDoc.docId))
-
           if (foundCategory) {
             setOpenCategoryId(String(foundCategory.categoryId))
           }
         }
       }
-    } else {
+    } else if (selectedVersionId === null && listDoc.length > 0) {
       setSelectedVersionId(listDoc[0].versionId)
     }
 
     return () => {
       document.body.classList.remove('doc-page')
     }
-  }, [])
+  }, [listDoc, searchParams, selectedVersionId])
 
   // Fetch doc content
   useEffect(() => {
@@ -87,7 +86,9 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
     newUrl.searchParams.set('docId', String(doc.docId))
     router.replace(newUrl.toString(), { scroll: false })
   }
-
+  if (listDoc.length === 0) {
+    return <div className='p-6 text-center text-lg'>No document data available.</div>
+  }
   if (!ready || selectedVersionId === null) return null
 
   const selectedVersion = listDoc.find(v => v.versionId === selectedVersionId)!

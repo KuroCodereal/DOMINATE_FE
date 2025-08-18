@@ -5,6 +5,7 @@ import CustomModalForm from '../../_components/custom-modal-form'
 import { useEffect } from 'react'
 import { VersionResponse } from '#/version'
 import TextArea from 'antd/es/input/TextArea'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -51,7 +52,7 @@ export default function VersionForm({ visible, onCancel, onFinish, modalType, fo
         </>
       }
     >
-      <Form.Item name='version' label='Version' rules={[{ required: true, message: 'Please input version!' }]}>
+      <Form.Item name='version' label='Version' rules={getValidationRules('version')}>
         <Input />
       </Form.Item>
       <Form.Item name='description' label='Description'>

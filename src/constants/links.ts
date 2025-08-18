@@ -25,6 +25,7 @@ export const LINKS = {
   payment: '/payment',
   payment_sync: '/payment/sync',
   payment_cancel: '/payment/cancel',
+  payment_cancel_pro: '/payment/cancelPro',
   payment_create: '/payment/create-payment',
   licenses_create: '/licenses/create',
   licenses_user: '/licenses/user',

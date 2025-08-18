@@ -5,6 +5,7 @@ import { PackageResponse } from '#/package'
 import { FormInstance } from 'antd'
 import CustomModalForm from '../../_components/custom-modal-form'
 import TextArea from 'antd/es/input/TextArea'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -81,25 +82,25 @@ export default function PackageForm({
         </>
       }
     >
-      <Form.Item name='name' label='Name' rules={[{ required: true, message: 'Please input name!' }]}>
+      <Form.Item name='name' label='Name' rules={getValidationRules('name')}>
         <Input />
       </Form.Item>
       <Form.Item name='description' label='Description'>
         <TextArea autoSize={{ minRows: 3 }} />
       </Form.Item>
-      <Form.Item name='price' label='Price'>
+      <Form.Item name='price' label='Price' rules={getValidationRules('price')}>
         <Input type='number' className='!w-full' />
       </Form.Item>
-      <Form.Item name='simulatedCount' label='Simulated'>
+      <Form.Item name='simulatedCount' label='Simulated' rules={getValidationRules('simulatedCount')}>
         <Input type='number' className='!w-full' />
       </Form.Item>
-      <Form.Item name='discount' label='Discount (%)' rules={[{ required: true, type: 'number', min: 0, max: 100 }]}>
+      <Form.Item name='discount' label='Discount (%)' rules={getValidationRules('discount')}>
         <Slider min={0} max={100} className='!w-full' />
       </Form.Item>
-      <Form.Item name='billingCycle' label='Billing Cycle' rules={[{ required: true }]}>
+      <Form.Item name='billingCycle' label='Billing Cycle' rules={getValidationRules('billingCycle')}>
         <Select options={billingCycleOptions} placeholder='Choose cycle' />
       </Form.Item>
-      <Form.Item name='typePackage' label='Type Package' rules={[{ required: true }]}>
+      <Form.Item name='typePackage' label='Type Package' rules={getValidationRules('typePackage')}>
         <Select options={typePackage} placeholder='Choose type' />
       </Form.Item>
       {modalType === 'edit' && (
@@ -107,7 +108,7 @@ export default function PackageForm({
           <Switch className='custom-switch' checkedChildren='Active' unCheckedChildren='Inactive' />
         </Form.Item>
       )}
-      <Form.Item name='optionsId' label='Options' rules={[{ required: true }]}>
+      <Form.Item name='optionsId' label='Options' rules={getValidationRules('optionsId')}>
         <Select mode='multiple' options={optionList} placeholder='Select options' />
       </Form.Item>
     </CustomModalForm>

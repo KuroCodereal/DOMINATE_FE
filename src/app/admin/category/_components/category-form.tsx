@@ -5,6 +5,7 @@ import CustomModalForm from '../../_components/custom-modal-form'
 import { useEffect } from 'react'
 import { CategoryResponse } from '#/category'
 import { VersionResponse } from '#/version'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -53,16 +54,27 @@ export default function CategoryForm({ visible, onCancel, onFinish, modalType, f
         </>
       }
     >
-      <Form.Item name='name' label='Name' rules={[{ required: true, message: 'Please input name.' }]}>
+      <Form.Item name='name' label='Name' rules={getValidationRules('name')}>
+        <Input
+          onChange={e => {
+            const nameValue = e.target.value
+            const slugValue = nameValue
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)+/g, '')
+            form.setFieldsValue({ slug: slugValue })
+          }}
+        />
+      </Form.Item>
+      <Form.Item name='slug' label='Slug' rules={getValidationRules('slug')}>
         <Input />
       </Form.Item>
-      <Form.Item name='slug' label='Slug' rules={[{ required: true, message: 'Please input slug.' }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name='order' label='Order' rules={[{ required: true, message: 'Please input order.' }]}>
+      <Form.Item name='order' label='Order' rules={getValidationRules('order')}>
         <Input type='number' className='!w-full' />
       </Form.Item>
-      <Form.Item name='versionId' label='Version'>
+      <Form.Item name='versionId' label='Version' rules={getValidationRules('versionId')}>
         <Select
           placeholder='Choose version'
           allowClear

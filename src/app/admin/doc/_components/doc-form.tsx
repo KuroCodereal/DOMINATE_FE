@@ -9,6 +9,7 @@ import { DocResponse } from '#/doc'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CategoryResponse } from '#/category'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -60,16 +61,27 @@ export default function DocForm({ visible, onCancel, onFinish, modalType, form, 
         </>
       }
     >
-      <Form.Item name='title' label='Title' rules={[{ required: true, message: 'Please input title!' }]}>
+      <Form.Item name='title' label='Title' rules={getValidationRules('title')}>
+        <Input
+          onChange={e => {
+            const titleValue = e.target.value
+            const slugValue = titleValue
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)+/g, '')
+            form.setFieldsValue({ slug: slugValue })
+          }}
+        />
+      </Form.Item>
+      <Form.Item name='slug' label='Slug' rules={getValidationRules('slug')}>
         <Input />
       </Form.Item>
-      <Form.Item name='slug' label='Slug' rules={[{ required: true, message: 'Please input slug!' }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name='order' label='Order' rules={[{ required: true, message: 'Please input order.' }]}>
+      <Form.Item name='order' label='Order' rules={getValidationRules('order')}>
         <Input type='number' className='!w-full' />
       </Form.Item>
-      <Form.Item name='categoryId' label='Category'>
+      <Form.Item name='categoryId' label='Category' rules={getValidationRules('categoryId')}>
         <Select
           placeholder='Choose category'
           allowClear

@@ -24,6 +24,7 @@ export default function LoginForm() {
       firstName: '',
       lastName: '',
       password: '',
+      rePassword: '',
       email: '',
       phoneNumber: '',
     },
@@ -51,18 +52,19 @@ export default function LoginForm() {
         if (checkPhoneNumberRes.check) toast.error('Phone number have already exist')
         return
       }
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { rePassword, ...submitData } = data
       const res = await http.post(LINKS.register_api, {
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
         baseUrl: '/api',
       })
 
       if (!CODE_SUCCESS.includes(res.code)) {
-        toast.error('Đăng ký thất bại')
+        toast.error(res.message || 'Register failed.')
         return
       }
 
-      toast.success('Đăng ký thành công')
+      toast.success(res.message || 'Register successfully.')
       router.push('/login')
       router.refresh()
     })
@@ -171,6 +173,23 @@ export default function LoginForm() {
                   <Input
                     type='password'
                     placeholder='Password'
+                    className='mt-4 w-full rounded-xl border-2 px-4 py-6 !text-base'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage className='data-[error=true]:text-destructive' />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='rePassword'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type='password'
+                    placeholder='RePassword'
                     className='mt-4 w-full rounded-xl border-2 px-4 py-6 !text-base'
                     {...field}
                   />

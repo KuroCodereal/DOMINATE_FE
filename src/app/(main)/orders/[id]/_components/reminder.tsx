@@ -3,7 +3,6 @@ import React, { useEffect, useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import { CODE_SUCCESS } from '~/constants'
 import ModalOrder from './modal-order'
-import { env } from '~/configs/env'
 import clsx from 'clsx'
 import { LINKS } from '~/constants/links'
 import http from '~/utils/http'
@@ -76,7 +75,6 @@ export default function Reminder({ orderId, data, paymentInfo }: Props) {
       try {
         const res = await http.post(LINKS.order_email_report, {
           params: {
-            email: env.ADMIN_MAIL,
             packageId: data.id,
             orderId,
             content: values.reminder,

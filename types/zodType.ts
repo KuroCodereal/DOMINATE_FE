@@ -48,14 +48,20 @@ export const LoginSchema = baseSchema.pick({
 })
 
 // Register
-export const RegisterSchema = baseSchema.pick({
-  userName: true,
-  firstName: true,
-  lastName: true,
-  password: true,
-  email: true,
-  phoneNumber: true,
-})
+export const RegisterSchema = baseSchema
+  .pick({
+    userName: true,
+    firstName: true,
+    lastName: true,
+    password: true,
+    rePassword: true,
+    email: true,
+    phoneNumber: true,
+  })
+  .refine(data => data.password === data.rePassword, {
+    path: ['rePassword'],
+    message: 'Password does not match',
+  })
 
 // Forget password
 export const ForgetSchema = baseSchema.pick({

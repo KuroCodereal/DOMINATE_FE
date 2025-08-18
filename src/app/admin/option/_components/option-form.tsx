@@ -4,6 +4,7 @@ import { FormInstance } from 'antd'
 import CustomModalForm from '../../_components/custom-modal-form'
 import { OptionResponse } from '#/option'
 import { useEffect } from 'react'
+import { getValidationRules } from '#/form-antd-type'
 
 interface Props {
   visible: boolean
@@ -50,7 +51,7 @@ export default function OptionForm({ visible, onCancel, onFinish, modalType, for
         </>
       }
     >
-      <Form.Item name='name' label='Name' rules={[{ required: true, message: 'Please input name!' }]}>
+      <Form.Item name='name' label='Name' rules={getValidationRules('name')}>
         <Input />
       </Form.Item>
 
