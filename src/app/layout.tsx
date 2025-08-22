@@ -6,6 +6,7 @@ import { eremitageFont } from '~/fonts/eremitage'
 import { ThemeProvider } from './_components/theme-provider'
 import ScrollToTop from './_components/scroll-to-top'
 
+
 export const metadata: Metadata = {
   title: 'Dominate',
   description: 'Dominate For Web Solution',

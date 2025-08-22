@@ -197,7 +197,117 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
         ) : (
           <div className=''>
             <h1 className='text-primary-system mb-4 text-center text-2xl font-semibold'>Document Dominate System</h1>
-            <p>Welcome to visit website, document to help you more understand about my system</p>
+            <p>
+              <div className="">
+  <h1 className="text-primary-system mb-4 text-center text-2xl font-semibold">
+    Document Dominate System
+  </h1>
+  <div className="text-left leading-relaxed">
+    <h2 className="text-xl font-semibold mt-6 mb-2">1. Installation</h2>
+    <p>
+      To install <strong>DOMinate Desktop Application</strong>, please choose
+      the package that fits your needs:
+    </p>
+    <ul className="list-disc pl-6 mb-4">
+      <li>
+        <a href="#" className="text-blue-600 hover:underline">
+          Download Runtime Package
+        </a>
+        <br />
+        <small>
+          (For executing workflows with a valid license key. This package is
+          lightweight and optimized for runtime execution.)
+        </small>
+      </li>
+      <li className="mt-2">
+        <a href="#" className="text-blue-600 hover:underline">
+          Download Developer Package
+        </a>
+        <br />
+        <small>
+          (For building, editing, and debugging workflows. This package includes
+          all runtime features plus development tools.)
+        </small>
+      </li>
+    </ul>
+    <p>
+      After downloading, follow the setup wizard to complete the installation.
+      Once installed, launch the application from the desktop shortcut or start
+      menu.
+    </p>
+
+    <h2 className="text-xl font-semibold mt-6 mb-2">2. User Guide</h2>
+
+    <h3 className="text-lg font-semibold mt-4 mb-2">
+      2.1 Launching the Application
+    </h3>
+    <ul className="list-disc pl-6 mb-4">
+      <li>Open <strong>DOMinate Desktop Application</strong>.</li>
+      <li>Enter your License Key when prompted.</li>
+      <li>
+        The system will validate your license and log you into the correct mode:
+        <ul className="list-disc pl-6 mt-1">
+          <li>
+            <strong>Runtime</strong> → Workflow execution only.
+          </li>
+          <li>
+            <strong>Developer</strong> → Workflow creation, editing, and
+            execution.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 className="text-lg font-semibold mt-4 mb-2">
+      2.2 Home Screen Overview
+    </h3>
+    <p>The Home Screen contains the following options:</p>
+    <ul className="list-disc pl-6 mb-4">
+      <li>
+        <strong>Create New Project</strong> – Start a new workflow project.
+      </li>
+      <li>
+        <strong>Open Project</strong> – Load an existing workflow.
+      </li>
+      <li>
+        <strong>Recent Projects</strong> – Quick access to recently opened
+        workflows.
+      </li>
+      <li>
+        <strong>Settings</strong> – Manage license and environment preferences.
+      </li>
+    </ul>
+
+    <h3 className="text-lg font-semibold mt-4 mb-2">2.3 Demo Actions</h3>
+
+    <h4 className="text-base font-semibold mt-3 mb-1">
+      2.3.1. Navigate to URL
+    </h4>
+    <p>
+      Opens a browser window and loads the specified website.
+      <br />
+      <em>
+        Example: Navigate to{" "}
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline"
+        >
+          https://facebook.com
+        </a>
+      </em>
+    </p>
+
+    <h4 className="text-base font-semibold mt-3 mb-1">2.3.2. Scroll Page</h4>
+    <p>
+      Scrolls the webpage vertically or horizontally.
+      <br />
+      <em>Example: Scroll down to the bottom of the page.</em>
+    </p>
+  </div>
+</div>
+            </p>
           </div>
         )}
       </div>

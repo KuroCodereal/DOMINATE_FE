@@ -60,11 +60,13 @@ export default function LoginForm() {
       })
 
       if (!CODE_SUCCESS.includes(res.code)) {
-        toast.error(res.message || 'Register failed.')
+         toast.error(res.message || 'Register failed.')
+        //toast.error(typeof res.message.toString() === 'string' ? res.code.toString() : 'Register failed.')
         return
       }
 
       toast.success(res.message || 'Register successfully.')
+      //toast.success(typeof res.message.toString() === 'string' ? 'Register successfully.' : res.message.toString())
       router.push('/login')
       router.refresh()
     })
