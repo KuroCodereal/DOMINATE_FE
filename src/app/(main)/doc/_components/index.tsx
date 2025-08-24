@@ -11,6 +11,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '~
 import { LINKS } from '~/constants/links'
 import DOMPurify from 'dompurify'
 import http from '~/utils/http'
+import { Download, BookOpen, Globe, MousePointer } from "lucide-react";
 
 export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }) {
   const router = useRouter()
@@ -161,7 +162,7 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
       <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <Dialog.Portal>
           <Dialog.Overlay className='fixed inset-0 z-40 bg-black/50' />
-          <Dialog.Content className='dark:bg-background-primary fixed top-0 left-0 z-50 h-full w-4/5 max-w-xs overflow-y-auto bg-white p-4'>
+          <Dialog.Content className='dark:bg-background-primary fixed top-0 left-0 z-50 h-full w-4/5 max-w-xs overflow-y-auto  p-4'>
             <div className='mb-4 flex items-center justify-between'>
               <h2 className='text-lg font-bold'>Tài liệu</h2>
               <button onClick={() => setIsMobileMenuOpen(false)}>
@@ -178,7 +179,7 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
         {/* Nút mở menu mobile */}
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className='text-primary-system fixed top-5 left-42 z-30 mb-4 block cursor-pointer rounded bg-white px-4 py-2 md:hidden'
+          className='text-primary-system fixed top-5 left-42 z-30 mb-4 block cursor-pointer rounded  px-4 py-2 md:hidden'
         >
           doc
         </button>
@@ -195,120 +196,95 @@ export default function DocPage({ listDoc }: { listDoc: DocsCustomerResponse[] }
             />
           </article>
         ) : (
-          <div className=''>
-            <h1 className='text-primary-system mb-4 text-center text-2xl font-semibold'>Document Dominate System</h1>
-            <p>
-              <div className="">
-  <h1 className="text-primary-system mb-4 text-center text-2xl font-semibold">
-    Document Dominate System
-  </h1>
-  <div className="text-left leading-relaxed">
-    <h2 className="text-xl font-semibold mt-6 mb-2">1. Installation</h2>
-    <p>
-      To install <strong>DOMinate Desktop Application</strong>, please choose
-      the package that fits your needs:
-    </p>
-    <ul className="list-disc pl-6 mb-4">
-      <li>
-        <a href="#" className="text-blue-600 hover:underline">
-          Download Runtime Package
-        </a>
-        <br />
-        <small>
-          (For executing workflows with a valid license key. This package is
-          lightweight and optimized for runtime execution.)
-        </small>
-      </li>
-      <li className="mt-2">
-        <a href="#" className="text-blue-600 hover:underline">
-          Download Developer Package
-        </a>
-        <br />
-        <small>
-          (For building, editing, and debugging workflows. This package includes
-          all runtime features plus development tools.)
-        </small>
-      </li>
-    </ul>
-    <p>
-      After downloading, follow the setup wizard to complete the installation.
-      Once installed, launch the application from the desktop shortcut or start
-      menu.
-    </p>
+           <div className="">
+      <h1 className="text-primary-system mb-4 text-center text-2xl font-semibold">
+        Document Dominate System
+      </h1>
 
-    <h2 className="text-xl font-semibold mt-6 mb-2">2. User Guide</h2>
+      <div className="max-w-3xl mx-auto p-6  rounded-2xl shadow-lg leading-relaxed">
 
-    <h3 className="text-lg font-semibold mt-4 mb-2">
-      2.1 Launching the Application
-    </h3>
-    <ul className="list-disc pl-6 mb-4">
-      <li>Open <strong>DOMinate Desktop Application</strong>.</li>
-      <li>Enter your License Key when prompted.</li>
-      <li>
-        The system will validate your license and log you into the correct mode:
-        <ul className="list-disc pl-6 mt-1">
+        {/* Installation */}
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <Download className="w-6 h-6 " /> 1. Installation
+        </h2>
+
+        <p className="mb-3">
+          To install <strong>DOMinate Desktop Application</strong>, please choose
+          the package that fits your needs:
+        </p>
+
+        <ul className="list-disc pl-6 space-y-3 ">
           <li>
-            <strong>Runtime</strong> → Workflow execution only.
+            <a
+              href="#"
+              className=" font-medium hover:underline flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" /> Download Runtime Package
+            </a>
+            <small className="">
+              (For executing workflows with a valid license key. This package is
+              lightweight and optimized for runtime execution.)
+            </small>
           </li>
           <li>
-            <strong>Developer</strong> → Workflow creation, editing, and
-            execution.
+            <a
+              href="#"
+              className=" font-medium hover:underline flex items-center gap-2"
+            >
+              <BookOpen className="w-4 h-4" /> Download Developer Package
+            </a>
+            <small className="">
+              (For building, editing, and debugging workflows. This package includes
+              all runtime features plus development tools.)
+            </small>
           </li>
         </ul>
-      </li>
-    </ul>
 
-    <h3 className="text-lg font-semibold mt-4 mb-2">
-      2.2 Home Screen Overview
-    </h3>
-    <p>The Home Screen contains the following options:</p>
-    <ul className="list-disc pl-6 mb-4">
-      <li>
-        <strong>Create New Project</strong> – Start a new workflow project.
-      </li>
-      <li>
-        <strong>Open Project</strong> – Load an existing workflow.
-      </li>
-      <li>
-        <strong>Recent Projects</strong> – Quick access to recently opened
-        workflows.
-      </li>
-      <li>
-        <strong>Settings</strong> – Manage license and environment preferences.
-      </li>
-    </ul>
+        <p className="mt-3">
+          After downloading, follow the setup wizard to complete the installation.
+          Once installed, launch the application from the desktop shortcut or start
+          menu.
+        </p>
 
-    <h3 className="text-lg font-semibold mt-4 mb-2">2.3 Demo Actions</h3>
+        {/* User Guide */}
+        <h2 className="text-2xl font-bold mt-8 mb-4 flex items-center gap-2">
+          <BookOpen className="w-6 h-6 text-green-600" /> 2. User Guide
+        </h2>
 
-    <h4 className="text-base font-semibold mt-3 mb-1">
-      2.3.1. Navigate to URL
-    </h4>
-    <p>
-      Opens a browser window and loads the specified website.
-      <br />
-      <em>
-        Example: Navigate to{" "}
-        <a
-          href="https://facebook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          https://facebook.com
-        </a>
-      </em>
-    </p>
+        {/* Launching */}
+        <h3 className="text-xl font-semibold mt-4 mb-2">2.1 Launching the Application</h3>
+        <ul className="list-disc pl-6 space-y-2 ">
+          <li>Open <strong>DOMinate Desktop Application</strong>.</li>
+          <li>Enter your License Key when prompted.</li>
+          <li>
+            The system validates your license and logs you into the correct mode:
+            <ul className="list-disc pl-6 mt-2 space-y-1">
+              <li><strong>Runtime</strong> → Workflow execution only.</li>
+              <li><strong>Developer</strong> → Workflow creation, editing, and execution.</li>
+            </ul>
+          </li>
+        </ul>
 
-    <h4 className="text-base font-semibold mt-3 mb-1">2.3.2. Scroll Page</h4>
-    <p>
-      Scrolls the webpage vertically or horizontally.
-      <br />
-      <em>Example: Scroll down to the bottom of the page.</em>
-    </p>
-  </div>
-</div>
-            </p>
-          </div>
+        {/* Home Screen */}
+        <h3 className="text-xl font-semibold mt-6 mb-2">2.2 Home Screen Overview</h3>
+        <p className="mb-2">The Home Screen contains the following options:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li><strong>Create New Project</strong> – Start a new workflow project.</li>
+          <li><strong>Open Project</strong> – Load an existing workflow.</li>
+          <li><strong>Recent Projects</strong> – Quick access to recent workflows.</li>
+          <li><strong>Settings</strong> – Manage license and environment preferences.</li>
+        </ul>
+
+        <h4 className="text-lg font-semibold mt-4 mb-1 flex items-center gap-2">
+          <MousePointer className="w-5 h-5 text-purple-600" /> 2.3.1. Scroll Page
+        </h4>
+        <p>
+          Scrolls the webpage vertically or horizontally.
+          <br />
+          <em>Example: Scroll down to the bottom of the page.</em>
+        </p>
+      </div>
+    </div>
         )}
       </div>
     </>
